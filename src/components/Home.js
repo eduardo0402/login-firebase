@@ -1,16 +1,18 @@
 import React from "react"
 import { useAuth } from "../context/aunthContext";
-
+import {useNavigate} from "react-router-dom";
 
 export const Home = () => {
-    // const authContext = useAuth();
-    const {user} = useAuth()
-    // const authContext = useContext(context);
-    console.log(user);
-    //console.log(user);
-    // funcion de para pasar el valor de usecontext para que e valor del estado pase se quede en el cokmpoenente padre no importa que tenga hijos el valor sigue
+
+    const {user,logout,loading} = useAuth()
+
+    const handleLogout = async () =>{
+        await logout()
+    }
+if (loading)return <h1>loading</h1>
 
     return <div> 
-        <h1>Hola mundo</h1>
+        <h1>welcome {user.email}</h1>
+        <button onClick={handleLogout}>logout</button>
     </div>
 }
